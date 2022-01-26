@@ -3,18 +3,20 @@
 import React, { useState } from 'react';
 import { getMovies } from '../services/fakeMovieService';
 import Like from './common/Like';
+import Pagination from './common/Pagination';
+import { Paginate } from '../utils/Paginate';
 
 function Movies() {
 	const [state, setState] = useState({
 		movies: getMovies(),
+		pageSize: 4,
 	});
+	const [currentPage, setcurrentPage] = useState(1);
 
 	const handleDelete = (movie) => {
 		const movies = state.movies.filter((m) => m._id !== movie._id);
 		setState({ movies });
 	};
-
-	const { length: count } = state.movies;
 
 	const handleLink = (movie) => {
 		const movies = [...state.movies];
@@ -23,6 +25,15 @@ function Movies() {
 		movies[index].liked = !movies[index].liked;
 		setState({ movies });
 	};
+
+	const handlePageChange = (page) => {
+		setcurrentPage(page);
+	};
+
+	const { length: count } = state.movies;
+	const { pageSize, movies: allMovies } = state;
+
+	const movies = Paginate(allMovies, currentPage, pageSize);
 
 	return (
 		<div>
@@ -43,8 +54,8 @@ function Movies() {
 							</tr>
 						</thead>
 						<tbody>
-							{state.movies &&
-								state.movies.map((movie) => (
+							{movies &&
+								movies.map((movie) => (
 									<tr key={movie._id}>
 										<td>{movie.title}</td>
 										<td>{movie.genre.name}</td>
@@ -67,6 +78,12 @@ function Movies() {
 								))}
 						</tbody>
 					</table>
+					<Pagination
+						itemsCount={count}
+						pageSize={pageSize}
+						currentPage={currentPage}
+						onPageChange={handlePageChange}
+					/>
 				</div>
 			)}
 		</div>
