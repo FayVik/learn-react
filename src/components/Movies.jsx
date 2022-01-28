@@ -9,9 +9,11 @@ import { Paginate } from '../utils/Paginate';
 function Movies() {
 	const [state, setState] = useState({
 		movies: getMovies(),
-		pageSize: 4,
 	});
+
 	const [currentPage, setcurrentPage] = useState(1);
+
+	const [pageSize] = useState(4);
 
 	const handleDelete = (movie) => {
 		const movies = state.movies.filter((m) => m._id !== movie._id);
@@ -31,7 +33,7 @@ function Movies() {
 	};
 
 	const { length: count } = state.movies;
-	const { pageSize, movies: allMovies } = state;
+	const { movies: allMovies } = state;
 
 	const movies = Paginate(allMovies, currentPage, pageSize);
 
