@@ -90,14 +90,6 @@ function Movies() {
 
 	// Event for handling sorting
 	const handleSort = (sortColumn) => {
-		// const sortColumn = { ...sort.sortColumn };
-		// console.log(sortColumn);
-		// if (sortColumn.path === path)
-		// 	sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
-		// else {
-		// 	sortColumn.path = path;
-		// 	sortColumn.order = 'asc';
-		// }
 		setSort({ sortColumn });
 	};
 
