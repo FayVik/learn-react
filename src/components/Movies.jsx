@@ -89,14 +89,15 @@ function Movies() {
 	};
 
 	// Event for handling sorting
-	const handleSort = (path) => {
-		const sortColumn = { ...sort.sortColumn };
-		if (sortColumn.path === path)
-			sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
-		else {
-			sortColumn.path = path;
-			sortColumn.order = 'asc';
-		}
+	const handleSort = (sortColumn) => {
+		// const sortColumn = { ...sort.sortColumn };
+		// console.log(sortColumn);
+		// if (sortColumn.path === path)
+		// 	sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
+		// else {
+		// 	sortColumn.path = path;
+		// 	sortColumn.order = 'asc';
+		// }
 		setSort({ sortColumn });
 	};
 
@@ -117,6 +118,7 @@ function Movies() {
 						<p>Showing {filtered.length} movies in the database.</p>
 						<MoviesTable
 							movies={movies}
+							sortColumn={sort.sortColumn}
 							onLike={handleLike}
 							onDelete={handleDelete}
 							onSort={handleSort}
