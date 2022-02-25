@@ -49,7 +49,7 @@ function Movies() {
 		setState({ movies });
 	};
 
-	//Handling the like funtion
+	//Handling the like function
 	const handleLike = (movie) => {
 		const movies = [...state.movies];
 		const index = movies.indexOf(movie);
@@ -58,15 +58,15 @@ function Movies() {
 		setState({ movies });
 	};
 
-	// Handling the current page funtion
+	// Handling the current page function
 	const handlePageChange = (page) => {
 		setcurrentPage(page);
 	};
 
-	// Destructuring the movies array from state and renameing it to a new variable name.
+	// Destructuring the movies array from state and renaming it to a new variable name.
 	const { movies: allMovies } = state;
 
-	// Destructuring the selectedGener.
+	// Destructuring the selectedGenre.
 	const { selectedGenre } = selecteGenre;
 
 	//
